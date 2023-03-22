@@ -1,0 +1,69 @@
+Mongodb is non relational database where we have collection, document and field
+
+use test // if test datbase not exist so create test datbase switch to test 
+show dbs //list of all the database
+
+//for creating sal collection and insert record in collection
+db.emp.insert({ id: 2, name: 'Ryan', gender: 'M' });
+db.emp.insert({ id: 3, name: 'Raj', gender: 'M' });
+
+db.createCollection("emp") //for creating collection
+db.emp.drop() //for drop collection
+
+db.emp.find() //for fetching emp collection record
+
+db.emp.find({"id":2}) //for fetching emp id =2 record
+
+db.emp.find().pretty() //it's show in json or looks good
+
+db.emp.findOne() //fetching first record 
+
+db.emp.find({"id":2},{"name":"Raj"}) // finding record when both condition are true (AND operator)
+
+db.emp.find({ $or : [{"id":2},{"name":"Raj"}] }) // finding record when either one or both condition are true (OR operator)
+
+db.emp.find({ "id":2 , $or : [{"name":"Ryan"},{"name":"Raj"}] })
+
+db.emp.save() // used for update or insert the document
+
+db.emp.remove("id":2)
+--------
+
+Projection : used for selecting only required data when fetching record
+
+db.emp.find({}, {"name":1, "_id":0})  // where "name" :1 tells only that field showing and Zero(0) show that record not diplay when fetch record.
+-------
+
+Sort, skip, limit:-
+
+db.emp.find({}, {"name":1, "name":1}).sort({"name":1}) // sort by name in ascending order
+db.emp.find({}, {"name":1, "name":1}).sort({"name":-1}) // sort by name in descending order
+
+db.emp.find({}, {"name":1, "name":1}).skip(1) // skip record by 1
+
+db.emp.find({}, {"name":1, "name":1}).limit(1) // limit record by 1
+
+--------
+
+Indexing: indexing is helpful when we searching in very large document so it's take less time. 
+
+db.emp.ensureIndex({"id":1}) //for enable index
+
+db.emp.find({"id":10000}) //after enable indexing now it will take less time
+
+db.emp.dropIndex({"id":1}) // for remove index
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
