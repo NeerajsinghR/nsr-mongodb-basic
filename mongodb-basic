@@ -53,17 +53,21 @@ db.emp.find({"id":10000}) //after enable indexing now it will take less time
 
 db.emp.dropIndex({"id":1}) // for remove index
 
+-------
+
+Aggregation : when we want to group two field or apply filter based on some field then we can use aggregation
+
+//these query will fillter based on gender, it count how many male & female in emp document print
+
+db.emp.aggregate([{ $group: {_id: "$gender", myResult : {$sum :1 }}} ])
+for e.g:-
+male 2
+female 1
+
+//fetch male & female based on maximum age
+db.emp.aggregate([{ $group: {_id: "$gender", myResult : {$max :"$age" }}} ])
 
 
-
-
-
-
-
-
-
-
-
-
-
+//fetch male & female based on minimum age in emp document
+db.emp.aggregate([{ $group: {_id: "$gender", myResult : {$min :"$age" }}} ])
 
