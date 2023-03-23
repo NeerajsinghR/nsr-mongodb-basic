@@ -71,3 +71,10 @@ db.emp.aggregate([{ $group: {_id: "$gender", myResult : {$max :"$age" }}} ])
 //fetch male & female based on minimum age in emp document
 db.emp.aggregate([{ $group: {_id: "$gender", myResult : {$min :"$age" }}} ])
 
+//for backup and restore databse
+
+mongodump  //for backup all the database
+mongodump --db "dbName" // for backup specific database
+
+mongorestore // for restoring delete database
+mongorestore --db "dbName" dump/emp  // for restore specific database
